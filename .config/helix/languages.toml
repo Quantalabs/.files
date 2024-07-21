@@ -1,27 +1,86 @@
 [language-server.gpt]
-command = "helix-gpt --handler codeium"
+command = "helix-gpt"
+args = ["--handler", "codeium", "--triggerCharacters", "\"{||(|| ||\n||<\""]
 
 [language-server.pylsp.config.pylsp]
-plugins.flake8 = {enabled = true}
-plugins.autopep8 = {enabled = true}
-plugins.mccabe = {enabled = false}
-plugins.pycodestyle = {enabled = true}
-plugins.pyflakes = {enabled = false}
-plugins.pylint = {enabled = false}
-plugins.yapf = {enabled = false}
+plugins.flake8 = { enabled = true }
+plugins.autopep8 = { enabled = true }
+plugins.mccabe = { enabled = false }
+plugins.pycodestyle = { enabled = true }
+plugins.pyflakes = { enabled = false }
+plugins.pylint = { enabled = false }
+plugins.yapf = { enabled = false }
 plugins.ruff = { enabled = true, lineLength = 120 }
+
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+[[language]]
+name = "javascript"
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "gpt",
+]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "gpt",
+]
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "gpt",
+]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "gpt",
+]
+
+[[language]]
+name = "json"
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "gpt",
+]
 
 [[language]]
 name = "rust"
-language-servers = [ "gpt", "rust-analyzer" ]
+language-servers = ["rust-analyzer", "gpt"]
 
 [[language]]
 name = "toml"
-language-servers = [ "gpt" ]
+language-servers = ["gpt"]
+formatter = { command = "taplo", args = ["fmt", "-"] }
 
 [[language]]
 name = "python"
-language-servers = [ "pylsp" ]
+language-servers = ["pylsp", "gpt"]
 
 [[language]]
 name = "yaml"
@@ -31,4 +90,9 @@ formatter = { command = "yamlfmt", args = ["-"] }
 [[language]]
 name = "svelte"
 auto-format = true
-formatter = { command = 'prettier', args = ["--plugin", "prettier-plugin-svelte", "--stdin"] }
+formatter = { command = 'prettier', args = [
+  "--plugin",
+  "prettier-plugin-svelte",
+  "--stdin",
+] }
+language-servers = ["gpt"]
