@@ -1,0 +1,19 @@
+#!/bin/bash
+
+while :; do
+    read -ep 'Enter number of wallpapers to generate (1-99): ' number
+    [[ $number =~ ^[[:digit:]]+$ ]] || continue
+    (( ( (number=(10#$number)) <= 99 ) && number > 0 )) || continue
+    # Here I'm sure that number is a valid number in the range 0..9999
+    # So let's break the infinite loop!
+    break
+done
+
+for (( i=1; i<=$number; i++ ))
+do
+	echo "Generating wallpaper $i"
+	python ~/.config/wallpapers/waveGenerator.py
+	cp ~/.config/wallpapers/wave_image.png ~/.config/wallpapers/wallpaper-$i.png
+done
+
+rm -rf ~/.config/wallpapers/wave_image.png

@@ -1,0 +1,34 @@
+[language-server.gpt]
+command = "helix-gpt --handler codeium"
+
+[language-server.pylsp.config.pylsp]
+plugins.flake8 = {enabled = true}
+plugins.autopep8 = {enabled = true}
+plugins.mccabe = {enabled = false}
+plugins.pycodestyle = {enabled = true}
+plugins.pyflakes = {enabled = false}
+plugins.pylint = {enabled = false}
+plugins.yapf = {enabled = false}
+plugins.ruff = { enabled = true, lineLength = 120 }
+
+[[language]]
+name = "rust"
+language-servers = [ "gpt", "rust-analyzer" ]
+
+[[language]]
+name = "toml"
+language-servers = [ "gpt" ]
+
+[[language]]
+name = "python"
+language-servers = [ "pylsp" ]
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt", args = ["-"] }
+
+[[language]]
+name = "svelte"
+auto-format = true
+formatter = { command = 'prettier', args = ["--plugin", "prettier-plugin-svelte", "--stdin"] }
