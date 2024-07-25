@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<desc>Created with Fabric.js 5.2.4</desc>
+<defs>
+</defs>
+<rect x="0" y="0" width="100%" height="100%" fill="transparent"></rect>
+<g transform="matrix(1 0 0 1 540 540)" id="fed1b0df-6b73-4539-9b28-dc8a5f5a9687"  >
+</g>
+<g transform="matrix(1 0 0 1 540 540)" id="f1d6ed46-6d1d-42f2-9abb-161a5e74cd5f"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+</g>
+<g transform="matrix(5.77 0 0 5.77 540 540)"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(23,147,209); fill-rule: evenodd; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-105.83, -99.72)" d="M 105.8125 16.625 C 98.41563 34.760158000000004 93.954196 46.622682 85.71875 64.21875 C 90.76811000000001 69.57107 96.965961 75.804114 107.03125 82.84375 C 96.210077 78.390904 88.828713 73.920352 83.3125 69.28125 C 72.7727 91.274163 56.259864 122.60209 22.75 182.8125 C 49.087628 167.60733 69.504089 158.23318 88.53125 154.65625 C 87.714216 151.1422 87.2497 147.34107 87.28125 143.375 L 87.3125 142.53125 C 87.730417 125.65743 96.508165 112.68146 106.90625 113.5625 C 117.30434 114.44354 125.38666 128.84492 124.96875 145.71875 C 124.89015 148.89387 124.53201 151.9483 123.90625 154.78125 C 142.72683 158.46289 162.92498 167.81304 188.90625 182.8125 C 183.78325 173.3807 179.21053 164.87862 174.84375 156.78125 C 167.96536 151.45004 160.79086 144.51145 146.15625 137 C 156.21524 139.61375 163.41735 142.62932 169.03125 146 C 124.63297 63.338161 121.03766 52.354109 105.8125 16.625 z" stroke-linecap="round" />
+</g>
+</svg>

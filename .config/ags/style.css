@@ -1,0 +1,99 @@
+@import 'mocha.css';
+
+window>box {
+  padding: 6px;
+}
+
+window {
+  font-family: "SF Pro Display";
+}
+
+button {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+}
+
+.workspaces * {
+  font-size: 0;
+  min-width: 5pt;
+  min-height: 5pt;
+  margin: 2.25px;
+  border-radius: 30px;
+  background-color: #eeeeec;
+  transition: 100ms;
+  animation: ws_normal 20s ease-out 10;
+}
+
+.workspaces .active {
+  background-color: @mauve;
+  min-width: 12.25pt;
+  transition: 100ms;
+}
+
+.workspaces .occupied:not(.active) {
+  background-color: @pink;
+  transition: 100ms;
+}
+
+.workspaces *:not(.active):not(.occupied) {
+  background-color: @red;
+}
+
+window.notification-popups box.notifications {
+  padding: .5em;
+}
+
+.icon {
+  min-width: 68px;
+  min-height: 68px;
+  margin-right: 1em;
+}
+
+.icon image {
+  font-size: 58px;
+  /* to center the icon */
+  margin: 5px;
+  color: @theme_fg_color;
+}
+
+.icon box {
+  min-width: 68px;
+  min-height: 68px;
+  border-radius: 7px;
+}
+
+.notification {
+  min-width: 350px;
+  border-radius: 11px;
+  padding: 1em;
+  margin: .5em;
+  border: 1px solid @wm_borders_edge;
+  background-color: @theme_bg_color;
+}
+
+.notification.critical {
+  border: 1px solid lightcoral;
+}
+
+.title {
+  color: @theme_fg_color;
+  font-size: 1.4em;
+}
+
+.body {
+  color: @theme_unfocused_fg_color;
+}
+
+.actions .action-button {
+  margin: 0 .4em;
+  margin-top: .8em;
+}
+
+.actions .action-button:first-child {
+  margin-left: 0;
+}
+
+.actions .action-button:last-child {
+  margin-right: 0;
+}
