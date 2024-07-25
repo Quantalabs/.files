@@ -2,6 +2,9 @@
 command = "helix-gpt"
 args = ["--handler", "codeium", "--triggerCharacters", "\"{||(|| ||\n||<\""]
 
+[language-server.rust-analyzer.config]
+check.command = "clippy"
+
 [language-server.pylsp.config.pylsp]
 plugins.flake8 = { enabled = true }
 plugins.autopep8 = { enabled = true }
@@ -14,6 +17,15 @@ plugins.ruff = { enabled = true, lineLength = 120 }
 
 [language-server]
 biome = { command = "biome", args = ["lsp-proxy"] }
+
+[[language]]
+name = "markdown"
+language-servers = [
+  "marksman"
+]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
+auto-format = true
+rulers = [120]
 
 [[language]]
 name = "javascript"
@@ -81,6 +93,14 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 [[language]]
 name = "python"
 language-servers = ["pylsp", "gpt"]
+
+[language.formatter]
+command = "black"
+args = [
+  "-", # stdin
+  "--quiet",
+  "--line-length=79",
+]
 
 [[language]]
 name = "yaml"
