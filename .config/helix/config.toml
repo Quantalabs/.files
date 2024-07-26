@@ -25,6 +25,9 @@ display-inlay-hints = true
 hidden = false
 deduplicate-links = false
 
+[editor.auto-save]
+focus-lost = true
+
 [editor.auto-pairs]
 '(' = ')'
 '{' = '}'

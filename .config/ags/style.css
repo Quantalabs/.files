@@ -9,9 +9,21 @@ window {
 }
 
 button {
-  padding-top: 0;
-  padding-bottom: 0;
   background-color: transparent;
+  padding: 0;
+}
+
+.background {
+  background-color: rgba(88, 91, 112, 0.6);
+}
+
+.right>* {
+  margin: 4px;
+}
+
+.trayItem {
+  margin-left: 4px;
+  padding: 0px;
 }
 
 .workspaces * {
@@ -26,18 +38,19 @@ button {
 }
 
 .workspaces .active {
-  background-color: @mauve;
+  background-color: @pink;
   min-width: 12.25pt;
   transition: 100ms;
 }
 
 .workspaces .occupied:not(.active) {
-  background-color: @pink;
+  background-color: @red;
   transition: 100ms;
 }
 
 .workspaces *:not(.active):not(.occupied) {
-  background-color: @red;
+  background-color: transparent;
+  border: 1px solid @red;
 }
 
 window.notification-popups box.notifications {

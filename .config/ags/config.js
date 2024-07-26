@@ -5,6 +5,66 @@ const systemtray = await Service.import("systemtray");
 const bluetooth = await Service.import("bluetooth");
 const network = await Service.import("network");
 import { NotificationPopups } from "./notifications.js";
+const mpris = await Service.import("mpris");
+
+/** @param {import('types/service/mpris').MprisPlayer} player */
+const Player = (player) =>
+	Widget.Button({
+		class_name: "player",
+		on_primary_click: (e) => player.playPause(),
+		on_scroll_up: (e) => player.previous(),
+		on_scroll_down: (e) => player.next(),
+		on_middle_click: (e) => player.previous(),
+		on_secondary_click: (e) => player.next(),
+		child: Widget.Label().hook(player, (label) => {
+			const { track_artists, track_title } = player;
+			label.label = `${track_artists.join(", ")} - ${track_title}`;
+		}),
+	});
+
+const players = Widget.Box({
+	class_name: "playerBox",
+	children: mpris.bind("players").as((p) => p.map(Player)),
+});
+
+const indicatorNl = Widget.Button({
+	child: Widget.Icon({
+		icon: "display-brightness",
+	}),
+	on_primary_click: (_, event) => {
+		Utils.execAsync([
+			"busctl",
+			"--user",
+			"--",
+			"call",
+			"rs.wl-gammarelay",
+			"/",
+			"rs.wl.gammarelay",
+			"UpdateTemperature",
+			"n",
+			"-200",
+		])
+			.then((out) => print(out))
+			.catch((err) => print(err));
+	},
+	on_secondary_click: (_, event) => {
+		Utils.execAsync([
+			"busctl",
+			"--user",
+			"--",
+			"call",
+			"rs.wl-gammarelay",
+			"/",
+			"rs.wl.gammarelay",
+			"UpdateTemperature",
+			"n",
+			"+200",
+		])
+			.then((out) => print(out))
+			.catch((err) => print(err));
+	},
+	css: "padding: 0;",
+});
 
 const WifiIndicator = () =>
 	Widget.Box({
@@ -12,8 +72,10 @@ const WifiIndicator = () =>
 			Widget.Icon({
 				icon: network.wifi.bind("icon_name"),
 				tooltipText: network.wifi.bind("ssid").as((ssid) => ssid || "Unknown"),
+				css: "padding: 0; margin: 0;",
 			}),
 		],
+		css: "padding: 0; margin: 0;",
 	});
 
 const WiredIndicator = () =>
@@ -23,12 +85,12 @@ const WiredIndicator = () =>
 
 const NetworkIndicator = () =>
 	Widget.Stack({
+		css: "padding: 0;",
 		children: {
 			wifi: WifiIndicator(),
 			wired: WiredIndicator(),
 		},
 		shown: network.bind("primary").as((p) => p || "wifi"),
-		css: "margin-left: 4px;",
 	});
 
 const connectedList = Widget.Menu({
@@ -66,16 +128,18 @@ const indicatorBl = Widget.Button({
 		icon: bluetooth
 			.bind("enabled")
 			.as((on) => `bluetooth-${on ? "active" : "disabled"}-symbolic`),
+		css: "padding: 0; margin: 0;",
 	}),
 	on_primary_click: (_, event) => {
 		connectedList.popup_at_pointer(event);
 	},
-	css: "padding: 0;",
+	css: "padding: 0;margin: 0;",
 });
 
 /** @param {import('types/service/systemtray').TrayItem} item */
 const SysTrayItem = (item) =>
 	Widget.Button({
+		class_name: "trayItem",
 		child: Widget.Icon().bind("icon", item, "icon"),
 		tooltipMarkup: item.bind("tooltip_markup"),
 		onPrimaryClick: (_, event) => item.activate(event),
@@ -83,6 +147,7 @@ const SysTrayItem = (item) =>
 	});
 
 const sysTray = Widget.Box({
+	class_name: "sysTray",
 	children: systemtray.bind("items").as((i) => i.map(SysTrayItem)),
 });
 
@@ -181,20 +246,22 @@ function Left() {
 function Center() {
 	return Widget.Box({
 		spacing: 8,
-		children: [],
+		children: [players],
 	});
 }
 
 function Right() {
 	return Widget.Box({
+		class_name: "right",
 		hpack: "end",
 		spacing: 8,
 		children: [
+			sysTray,
+			indicatorNl,
 			batteryProgress,
 			NetworkIndicator(),
 			indicatorBl,
 			Clock(),
-			sysTray,
 		],
 	});
 }
