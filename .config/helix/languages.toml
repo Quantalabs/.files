@@ -5,6 +5,9 @@ args = ["--handler", "codeium", "--triggerCharacters", "\"{||(|| ||\n||<\""]
 [language-server.rust-analyzer.config]
 check.command = "clippy"
 
+[language-server.ltex]
+command = "/usr/bin/ltex-ls"
+
 [language-server.pylsp.config.pylsp]
 plugins.flake8 = { enabled = true }
 plugins.autopep8 = { enabled = true }
@@ -21,7 +24,8 @@ biome = { command = "biome", args = ["lsp-proxy"] }
 [[language]]
 name = "markdown"
 language-servers = [
-  "marksman"
+  "marksman",
+  "ltex"
 ]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
 auto-format = true
@@ -115,4 +119,8 @@ formatter = { command = 'prettier', args = [
   "prettier-plugin-svelte",
   "--stdin",
 ] }
+language-servers = ["gpt"]
+
+[[language]]
+name = "haskell"
 language-servers = ["gpt"]

@@ -1,59 +1,61 @@
 {
-    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-    "logo": {
-        "type": "builtin",
-        "source": "arch_small",
-        "padding": {
-            "top": 1,
-            "left": 5,
-            "right": 5
-        }, 
-        "color": {
-            "1": "red",
-            "2": "magenta",
-            "3": "reset_"
-        }
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "builtin",
+    "source": "arch_small",
+    "padding": {
+      "top": 1,
+      "left": 5,
+      "right": 5
     },
-    "display": {
-        "separator": " ",
-        "color": "magenta",
-        "size": {
-            "maxPrefix": "MB",
-            "ndigits": 1
-        },
-        "keyWidth": 20,
-    }, 
-    "modules": [
-        {
-          "type": "title",
-          "color": {
-              "user": "red",
-              "at": "yellow",
-              "host": "magenta"
-          },
-        },
-        "break",
-        {
-            "type": "os",
-            "format": "i use arch btw ({12})"
-        },
-        "kernel",
-        {
-            "type": "host",
-            "format": "{2} v{3} {5}"
-        },
-        "shell",
-        "WM",
-        {
-            "type": "packages",
-            "format": "{1}"
-        },
-        {
-            "type": "colors",
-            "symbol": "circle",
-            "block": {
-                "width": 2
-            }
-        }
-        ]
+    "color": {
+      "1": "red",
+      "2": "magenta",
+      "3": "reset_"
+    }
+  },
+  "display": {
+    "separator": " ",
+    "color": "magenta",
+    "size": {
+      "maxPrefix": "MB",
+      "ndigits": 1
+    },
+    "key": {
+      "width": 20
+    },
+  },
+  "modules": [
+    {
+      "type": "title",
+      "color": {
+        "user": "red",
+        "at": "yellow",
+        "host": "magenta"
+      },
+    },
+    "break",
+    {
+      "type": "os",
+      "format": "i use arch btw ({12})"
+    },
+    "kernel",
+    {
+      "type": "host",
+      "format": "{2} v{3} {5}"
+    },
+    "shell",
+    "WM",
+    {
+      "type": "packages",
+      "format": "{1}"
+    },
+    {
+      "type": "colors",
+      "symbol": "circle",
+      "block": {
+        "width": 2
+      }
+    }
+  ]
 }
